@@ -1,0 +1,189 @@
+<%- include('partials/head'); %>
+  <script src="../static/script.js" type="module" defer></script>
+  <script>var $ = document.querySelector.bind(document)</script>
+
+  <body>
+    <div class="black-line"></div>
+    <div class="layout-wrapper">
+
+      <%- include('partials/header'); %>
+        <div class="progress-nav">
+          <svg class="p" xmlns="http://www.w3.org/2000/svg" height="38px" viewBox="0 0 24 24" width="38px"
+            fill="rgba(55, 55, 55, 0.768)">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+          </svg>
+          <svg class="n" xmlns="http://www.w3.org/2000/svg" height="38px" viewBox="0 0 24 24" width="38px"
+            fill="rgba(55, 55, 55, 0.768)">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+          </svg>
+        </div>
+        <div class="new-progress">
+          <div class="progress-wrap">
+            <div class="progress-bar-wrap">
+              <div class="circle active-circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+            </div>
+            <div class="line line-active1"></div>
+
+          </div>
+
+          <div class="wrap">
+            <span class="text text-active text-position1">Nahrátí map</span>
+            <span class="text text-position2">Kategorie a pojmy</span>
+            <span class="text text-position3">Tvorba otázek</span>
+            <span class="text text-position4">Dokončení</span>
+          </div>
+        </div>
+
+        <section class="page page1 page-active">
+          <div class="upload-map-wrap">
+            
+            <label for="map-upload" id="map-label">
+              <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24"
+                width="24">
+                <g>
+                  <rect fill="none" height="24" width="24" />
+                </g>
+                <g>
+                  <path d="M5,20h14v-2H5V20z M5,10h4v6h6v-6h4l-7-7L5,10z" fill="#4f98f4" />
+                </g>
+              </svg>
+              Nahrát mapy
+              <input type="file" id="map-upload" multiple>
+            </label>
+  <div class="maps-wrap">
+    
+  </div>
+
+          </div>
+        </section>
+        <section class="page page2">
+          <div class="second-page-wrap">
+            <div class="create-category-wrap">
+              <div class="heading heading-xl">Vytvořit kategorie pojmů <svg xmlns="http://www.w3.org/2000/svg" height="24"
+                  viewBox="0 0 24 24" width="24">
+                  <path d="M0 0h24v24H0z" fill="none" />
+                  <path fill="rgb(49,64,76)"
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+                </svg></div>
+              <div class="category-info">
+                Zde vypište všechny kategorie hledaných pojmů, které se budou nacházet v testu (př: pro zeměpisnou
+                slepou mapu by kategorie
+                mohly být např: <strong>stát</strong>, <strong>řeka</strong>, <strong>pohoří</strong>, ... )
+              </div>
+              <div class="tags-outer">
+                <div contenteditable="true" class="tags" placeholder="Přidat kategorii ..."></div>
+                <button id="add">+</button>
+              </div>
+            </div>
+            <div class="add-terms-wrap">
+              <div class="heading heading-xl">Přidat pojmy (nepovinné)<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
+                  width="24">
+                  <path d="M0 0h24v24H0z" fill="none" />
+                  <path fill="rgb(49,64,76)"
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+                </svg></div>
+              <div class="category-info">
+                Zde vypiště všechny pojmy, ze kterých bude možnost v testu vybírat
+                (př: pro slepou mapu Evropy by v kategorii státy
+                mohly být pojmy: <strong>Česko</strong>, <strong>Slovensko</strong>,
+                <strong>Německo</strong>, ... )
+              </div>
+              <!-- <div class="tags-outer">
+              <div contenteditable="true" class="tags" placeholder="Přidat pojem ..."></div>
+              <button id="add-term">+</button>
+            </div> -->
+
+
+            </div>
+
+          </div>
+        </section>
+        <section class="page page3">
+          <div class="third-page-wrap">
+            <div class="wrap-questions">
+              <input type="radio" id="question1" name="question">
+              <label for="question1">1</label>
+              <div id="add-new-question">+</div>
+            </div>
+
+            <div class="create-questions-panel">
+              <div class="canvas-wrap">
+               <canvas id="canvas"></canvas> 
+              </div>
+              <div class="question-setting-wrap">
+                <h4 class="wrap-heading">mapa</h4>
+                <select name="choose-from-map" id="select-map">
+                  <option value="map1" disabled selected>Vyberte mapu</option>
+                </select>
+
+                <div class="linee"></div>
+
+                <h4 class="wrap-heading">kategorie otázky</h4>
+                <select name="choose-from-map" id="select-category">
+                  <option value="none" disabled selected>Kategorie</option>
+                </select>
+                <div class="linee"></div>
+                <h4 class="wrap-heading">nastavení odpovědí</h4>
+
+                <div class="answer-wrap">
+                  <input class="answer-text" placeholder="Přidat možnost ..."></input>
+                  <button class="close-term">×</button>
+                  <div class="answer-checkbox">
+                    <input type="checkbox" name="check" onclick="onlyOne(this)">
+                    <span>správná odpověď</span>
+                  </div>
+                </div>
+
+                <div class="answer-wrap">
+                  <input class="answer-text" placeholder="Přidat možnost ..."></input>
+                  <button class="close-term">×</button>
+                  <div class="answer-checkbox">
+                    <input type="checkbox" name="check" onclick="onlyOne(this)">
+                    <span>správná odpověď</span>
+                  </div>
+                </div>
+
+                <div class="answer-wrap">
+                  <input class="answer-text" placeholder="Přidat možnost ..."></input>
+                  <button class="close-term">×</button>
+                  <div class="answer-checkbox">
+                    <input type="checkbox" name="check" onclick="onlyOne(this)">
+                    <span>správná odpověď</span>
+                  </div>
+                </div>
+
+                <div class="answer-wrap">
+                  <input class="answer-text" placeholder="Přidat možnost ..."></input>
+                  <button class="close-term">×</button>
+                  <div class="answer-checkbox">
+                    <input type="checkbox" name="check" onclick="onlyOne(this)">
+                    <span>správná odpověď</span>
+                  </div>
+                </div>
+
+                <div class="linee"></div>
+
+                <h4 class="wrap-heading">počet bodů</h4>
+                <div class="points">
+                <svg xmlns="http://www.w3.org/2000/svg" id="dec-point" height="32" viewBox="0 0 24 24" width="32"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 13H5v-2h14v2z"fill="rgb(65,65,65)" id="dec-class" class="disabled"></svg>
+                              <span id="point-value">1</span>
+                              <svg xmlns="http://www.w3.org/2000/svg" id="inc-point"height="32" viewBox="0 0 24 24" width="32"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" id="inc-class"fill="rgb(65,65,65)"/></svg>             
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+        <section class="page page4">4</section>
+  </body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/521/fabric.js"></script>
+  <script>
+    var $ = document.querySelector.bind(document);
+    var c = document.console.log.bind(document)
+  </script> 
