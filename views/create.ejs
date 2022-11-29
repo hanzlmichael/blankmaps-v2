@@ -121,16 +121,32 @@
                   <option value="map1" disabled selected>Vyberte mapu</option>
                 </select>
 
-                <div class="linee"></div>
+                <div class="line-separator"></div>
 
                 <h4 class="wrap-heading">kategorie otázky</h4>
                 <select name="choose-from-map" id="select-category">
                   <option value="none" disabled selected>Kategorie</option>
                 </select>
-                <div class="linee"></div>
+                <div class="line-separator"></div>
                 <h4 class="wrap-heading">nastavení odpovědí</h4>
 
-                <div class="answer-wrap">
+                <div class="answers-btns-wrap">   
+                  <button class="btn-basic-grey" id="add-answer-wrap">+</button>           
+                  <details>
+                    <summary>
+                      <span>NÁHODNĚ</span>
+                     
+                    </summary>
+                    <div class="generate-wrap">
+                       <input type="number" id="generate-answers-input" min="1" max="10" value="1">
+                      <button id="generate-answers-btn">generovat</button>
+                    </div>
+                  </details>
+
+                </div>
+                <div class="answers-wrap"></div>
+
+               <!--  <div class="answer-wrap">
                   <input class="answer-text" placeholder="Přidat možnost ..."></input>
                   <button class="close-term">×</button>
                   <div class="answer-checkbox">
@@ -156,6 +172,7 @@
                     <span>správná odpověď</span>
                   </div>
                 </div>
+                
 
                 <div class="answer-wrap">
                   <input class="answer-text" placeholder="Přidat možnost ..."></input>
@@ -164,9 +181,10 @@
                     <input type="checkbox" name="check" onclick="onlyOne(this)">
                     <span>správná odpověď</span>
                   </div>
-                </div>
+                </div> -->
+                
 
-                <div class="linee"></div>
+                <div class="line-separator"></div>
 
                 <h4 class="wrap-heading">počet bodů</h4>
                 <div class="points">
@@ -176,7 +194,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </section>
         <section class="page page4">4</section>
@@ -184,6 +201,14 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/521/fabric.js"></script>
   <script>
-    var $ = document.querySelector.bind(document);
-    var c = document.console.log.bind(document)
+
+    function onlyOne(checkbox) {
+      var checkboxes = document.getElementsByName('check')
+      checkboxes.forEach((item) => {
+          if (item !== checkbox) { 
+            item.checked = false
+            console.log(item)
+          }
+      })
+    }
   </script> 

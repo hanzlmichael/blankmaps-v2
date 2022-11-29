@@ -1,6 +1,7 @@
 export function initQuestionsBar() {
   document.querySelector('#add-new-question').addEventListener('click', addNewQuestion)
   /* document.querySelector('#delete-question').addEventListener('click', deleteActiveQuestion) */
+  document.querySelector('#question1').checked = true
 }
 
 function addNewQuestion() {

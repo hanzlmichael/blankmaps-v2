@@ -2,12 +2,16 @@ import { initProgressBar } from './progressBar.js'
 import { initTag } from './tag.js'
 import { initQuestionsBar } from './questions.js'
 import { initMapUploadingFunctionality } from './map.js'
+import { initPoints } from './points.js'
+import { initAnswer } from './answer.js'
 
 
 initProgressBar()
 initTag()
 initQuestionsBar()
 initMapUploadingFunctionality()
+initPoints()
+initAnswer()
 var canvas = new fabric.Canvas('canvas')
 
 document.querySelector('#map-upload').addEventListener('change', handleMap)
@@ -87,4 +91,11 @@ function resizeMapToCanvas(data) {
     canvas.setHeight(im.getScaledHeight())
     canvas.setWidth(750)
   })  
+}
+
+function onlyOne(checkbox) {
+  var checkboxes = document.getElementsByName('check')
+  checkboxes.forEach((item) => {
+      if (item !== checkbox) item.checked = false
+  })
 }
