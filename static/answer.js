@@ -24,3 +24,5 @@ function removeAnswerWrap(e) {
     e.target.closest('.answer-wrap').remove()
   }
 }
+
+// TODO GENEROVANI MOŽNOSTI

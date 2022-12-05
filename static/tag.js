@@ -76,8 +76,8 @@ function observe() {
 
          // Přidat název kategorie do Selectu
           selectCategory.add(new Option(`${addedNode}`, `${addedNode}`))
-
-         createTermBlock(addedNode)
+          // Vytvoří blok s přidanou kategorií pro přidávání pojmů
+          createTermBlock(addedNode)
         }
         if (mutation.removedNodes[0]) {
           let deletedNode = extractCategoryFromDeletedHTMLNode(mutation.removedNodes[0].innerText)
@@ -153,15 +153,6 @@ function createTermElem(e) {
     let parent = active.closest('.wrap-tags')
     active.innerText =''
     parent.insertBefore(newNode,active)
-  }
-}
-
-function removeAllChildNodes(parent) {
-  console.log(1)
-  console.log(parent.childNodes[0])
-  while (parent.firstChild) {
-      parent.removeChild(parent.firstChild);
-      console.log('777')
   }
 }
 

@@ -71,7 +71,7 @@
                     d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
                 </svg></div>
               <div class="category-info">
-                Zde vypište všechny kategorie hledaných pojmů, které se budou nacházet v testu (př: pro zeměpisnou
+                Zde vypište všechny kategorie hledaných pojmů, které se budou nacházet v testu (pro zeměpisnou
                 slepou mapu by kategorie
                 mohly být např: <strong>stát</strong>, <strong>řeka</strong>, <strong>pohoří</strong>, ... )
               </div>
@@ -81,15 +81,15 @@
               </div>
             </div>
             <div class="add-terms-wrap">
-              <div class="heading heading-xl">Přidat pojmy (nepovinné)<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
+              <div class="heading heading-xl">Přidat pojmy pro generování odpovědí (nepovinné)<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                   width="24">
                   <path d="M0 0h24v24H0z" fill="none" />
                   <path fill="rgb(49,64,76)"
                     d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
                 </svg></div>
               <div class="category-info">
-                Zde vypiště všechny pojmy, ze kterých bude možnost v testu vybírat
-                (př: pro slepou mapu Evropy by v kategorii státy
+                Zde vypiště všechny pojmy pro automatické generování odpovědí
+                (pro slepou mapu Evropy by v kategorii státy
                 mohly být pojmy: <strong>Česko</strong>, <strong>Slovensko</strong>,
                 <strong>Německo</strong>, ... )
               </div>
@@ -106,8 +106,8 @@
         <section class="page page3">
           <div class="third-page-wrap">
             <div class="wrap-questions">
-              <input type="radio" id="question1" name="question">
-              <label for="question1">1</label>
+             <!--  <input type="radio" id="question1" name="question">
+              <label for="question1">1</label> -->
               <div id="add-new-question">+</div>
             </div>
 
@@ -134,7 +134,7 @@
                   <button class="btn-basic-grey" id="add-answer-wrap">+</button>           
                   <details>
                     <summary>
-                      <span>NÁHODNĚ</span>
+                      <span>ZKUSIT NÁHODNĚ</span>
                      
                     </summary>
                     <div class="generate-wrap">
@@ -192,6 +192,8 @@
                               <span id="point-value">1</span>
                               <svg xmlns="http://www.w3.org/2000/svg" id="inc-point"height="32" viewBox="0 0 24 24" width="32"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" id="inc-class"fill="rgb(65,65,65)"/></svg>             
                 </div>
+                <div class="line-separator"></div>
+                <button id="delete-question">smazat otázku</button>
               </div>
             </div>
           </div>

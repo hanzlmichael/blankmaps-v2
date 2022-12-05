@@ -41,7 +41,7 @@
   display: grid;
   grid-template-rows: 60px 58px 94px 1fr;
   height: 100%;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 .black-line {
@@ -496,6 +496,24 @@ br {display:none;}
 /* PAGE 3 */
 
 /* questions */
+#delete-question {
+  border: none;
+  outline: none;
+  width: 100%;
+  text-transform: uppercase;
+  padding: 0.5rem;
+  cursor:pointer;
+  height: 2.5625rem;
+  font-weight: 450;
+  background-color: rgba(247, 81, 81, 0.903);
+  color:white;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+#delete-question:hover {
+  background-color: rgba(247, 81, 81, 0.945);
+}
 .wrap-questions input {
   display:none;
 }
@@ -508,12 +526,18 @@ br {display:none;}
 .wrap-questions input:checked + label, .wrap-questions input:hover + label {
   background: rgb(222, 222, 222);
 }
+
+
 .wrap-questions {
   display:grid;
   gap:0.5rem;
+  /* margin:0.1rem; */
   /* background:white; */
-  box-shadow: 0 1px 4px 0 rgb(60 64 67 / 30%);
-  padding:0.5rem;
+  /* box-shadow: 0 1px 4px 0 rgb(60 64 67 / 30%); */
+  border-bottom: 2px solid rgba(215,215,215,0.5);
+
+  /* padding:0.5rem 0.5rem 1rem 0.5rem; */
+  padding-bottom: 0.75rem;
   grid-template-columns: repeat(auto-fill, minmax(2.5rem,1fr));
 }
 .wrap-questions > * {
@@ -526,7 +550,7 @@ br {display:none;}
   display: flex;
   justify-content: center;
   align-items: center;
-   
+  height: 2.3613125rem;
   color: #4f98f4;
 }
 #add-new-question:hover {
@@ -535,15 +559,16 @@ br {display:none;}
 
 .create-questions-panel {  
   margin-top:1rem;
-  display:grid;
+  display:none;
   grid-template-columns:750px minmax(300px,1fr);
-  /* overflow-x:auto;
-  overflow-y: auto; */
-  gap:1rem;
+  overflow-x:auto;
+  overflow-y: auto;
+  gap:1rem;padding:0.1rem;
   /* box-shadow: 0 1px 4px 0 rgb(60 64 67 / 30%); */
 }
 .canvas-wrap {
   box-shadow: 0 1px 4px 0 rgb(60 64 67 / 30%);
+  height: fit-content;
 }
 .question-setting-wrap {
   background-color:rgb(250,250,250);
@@ -618,6 +643,7 @@ canvas {
   border-radius:0.5rem;
   margin-bottom:0.5rem;
 }
+
 .answer-text {
   outline:none;
   border:none;
@@ -669,7 +695,7 @@ canvas {
   border:none;
   font-size:1.5rem;
   border-radius: 0.5rem;
-  width: 18%;
+  width: 16.5%;
   height: 2.5625rem;
 }
 #add-answer-wrap {
