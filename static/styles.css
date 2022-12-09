@@ -170,6 +170,7 @@
   border-radius: 0.75rem; */
   padding: 0.5rem;
   background-color: rgb(243, 243, 243);
+  /* background-color:   #dfd9d2; */
   /* background-color:#f4f4f4; */
   display: none;
   /* overflow-x: hidden; */
@@ -575,6 +576,7 @@ br {display:none;}
   padding:0.5rem;
   box-shadow: 0 1px 4px 0 rgb(60 64 67 / 30%);
   height: fit-content;
+  color: var(--black-secodary);
 }
 canvas {
   width:100%;

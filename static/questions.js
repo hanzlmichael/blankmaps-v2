@@ -1,36 +1,82 @@
 export function initQuestionsBar() {
-  document.querySelector('#add-new-question').addEventListener('click', addNewQuestion)
+  /* document.querySelector('#add-new-question').addEventListener('click', addNewQuestion) */
   /* document.querySelector('#delete-question').addEventListener('click', deleteActiveQuestion) */
   /* document.querySelector('#question1').checked = true */
   document.querySelector('.create-questions-panel').style.display = 'none'  
   document.querySelector('#delete-question').addEventListener('click', deleteActiveQuestion)
-  document.querySelector('.wrap-questions').addEventListener('click', handleChangeQuestion)
+
+  document.querySelector('.wrap-questions').addEventListener('input', changeQuestion)
+  document.querySelector('#add-new-question').addEventListener('click', handleChangeQuestion)
+
+  
   localStorage.clear()
 }
-let previousQuestion = null
+let questionState = {
+  previous: -1
+}
+let pointElement = document.querySelector('#point-value')
 
-function addNewQuestion() {
-  
+function handleChangeQuestion() {
+  debugger;
+  // Uložt data otázky do LS pokud je vytvorena alespon 1 otázka
+  if (questionState.previous > -1) {
+
+    // uložit staré hodnoty otázky do LS
+    let questions = JSON.parse(localStorage.getItem('questions'))
+    let points = getPoints()
+    questions[questionState.previous].points = points
+    localStorage.setItem('questions', JSON.stringify(questions))
+    resetQuestion()
+  }
+  createQuestionsArrayInLocalStorage()
   togglePanel() 
+  createQuestionInLocalStorage()
+  let nextQuestionNum = createQuestionIcon()
+  questionState.previous = nextQuestionNum - 1
+  setLastQuestionAsActive(nextQuestionNum)
+}
 
+function changeQuestion(e) {
+  debugger;
+  console.log('previousQuestionIndex: ', questionState.previous, ' previousQuestionNumber: ', Number(questionState.previous) + 1)
+  
+  console.log('doing change...')
+  // uložit staré hodnoty otázky do LS
+  let questions = JSON.parse(localStorage.getItem('questions'))
+  let points = getPoints()
+  questions[questionState.previous].points = points
+  localStorage.setItem('questions', JSON.stringify(questions))
+
+  // nahrát novou otázku 
+  let actualQuestion = e.target.id.slice(8) - 1
+  let newPoints = questions[actualQuestion].points
+  setPoints(newPoints)
+
+  // -1 protože nastavuju index 
+  questionState.previous = Number(e.target.id.slice(8)) - 1
+}
+
+// Vytvoří html element s číslem otázky a přidá na stránku před tlačítko '+'
+function createQuestionIcon() {
+  
   let addQuestion = document.querySelector('#add-new-question')
   let children = document.querySelector('.wrap-questions').children
   let nextQuestionNum = ((children.length - 1) / 2) + 1
   let newQuestionElem = `<input type="radio" id="question${nextQuestionNum}" name="question">
   <label for="question${nextQuestionNum}">${nextQuestionNum}</label>`
   addQuestion.insertAdjacentHTML('beforebegin', newQuestionElem)
-  
-  setLastQuestionAsActive(nextQuestionNum)
-
-  createQuestionInLocalStorage()
+  return nextQuestionNum
 }
 
 function setLastQuestionAsActive(num) {
-  let questionInput = document.querySelector(`#question${num}`)
-  questionInput.click()
+  /* let questionInput = document.querySelector(`#question${num}`)
+  questionInput.click() */
+  document.querySelector(`#question${num}`).checked = true
+
 }
 
 function deleteActiveQuestion() {
+  debugger;
   let checkedInput = document.querySelector('.wrap-questions')
   if (checkedInput.children.length === 1) return
   let len = checkedInput.children.length
@@ -39,12 +85,21 @@ function deleteActiveQuestion() {
   switchToLast()
   togglePanel() 
 
-  let indexOfQuestionToDelete = extractQuestionNumber() - 1 // Protoze pole v localStorage indexovano od 0
-  console.log('index: ' + indexOfQuestionToDelete )
+  // smazat otazku z LS
   let questions = JSON.parse(localStorage.getItem('questions'))
-  questions.splice(indexOfQuestionToDelete, 1)
-  
+  questions.splice(questionState.previous, 1)
   localStorage.setItem('questions', JSON.stringify(questions))
+  // vykreslit spravnou otazku
+  // TODO pokud smazano posledni otazka tak musim odecist -1 od questionState.previous  
+  questions = JSON.parse(localStorage.getItem('questions'))
+  
+  // pokud smazana posledni otazka musim odcitat index u previous
+  if (questions.length == questionState.previous) {
+    questionState.previous = questionState.previous - 1
+  }
+  let newPoints = questions[questionState.previous].points
+  setPoints(newPoints)
+
  }
 
  // Extrahuje číslo z id "question{číslo}"
@@ -56,6 +111,7 @@ function deleteActiveQuestion() {
  }
 
 function switchToLast() {
+  debugger;
   let isChecked = document.querySelector('.wrap-questions input:checked')
   if (!isChecked) {
     if (document.querySelector('.wrap-questions').children.length === 1) return
@@ -69,18 +125,14 @@ function createQuestionInLocalStorage() {
   localStorage.setItem('questions', JSON.stringify(questionsObjects))
 }
 
-function handleChangeQuestion(e) {
-  createQuestionsArrayInLocalStorage()
-
-  if (e.target.matches('input')) {    
-    if (previousQuestion === null) {
-      previousQuestion = 1
-    } else {
-      previousQuestion 
-    }
-    console.log(e.target)
+function updateQuestionState() {
+  if (questionState.previous === questionState.actual) {
+    questionState.actual = extractQuestionNumber()
+  } else {
+    questionState.previous = questionState.actual
+    questionState.actual = extractQuestionNumber()
   }
-  let checkedAsnwer = document.querySelector('.wrap-questions input:checked')
+  console.log('Previous: ' + questionState.previous + ' Actual: ' + questionState.actual)
 }
 
 
@@ -93,9 +145,7 @@ function createQuestionsArrayInLocalStorage() {
 
 // Schovat panel otázky pokud není vytvořená žádná otázka
 function togglePanel() {
-  console.log('1')
-  if (document.querySelector('.wrap-questions').children.length == 1) {
-      
+  if (document.querySelector('.wrap-questions').children.length == 1) {      
     let panel =  document.querySelector('.create-questions-panel')
     panel.style.display = panel.style.display == 'none' ? 'grid' : 'none'
   }
@@ -106,7 +156,7 @@ let questionObject = {
   category:"",
   correctAnswer: "",
   incorrectAnswers: [],
-  points: "",
+  points: 1,
   shape: "",
   color: "",
   thickness: "",
@@ -122,7 +172,14 @@ function getPoints() {
   return pointElement.textContent
 }
 function setPoints(value) {
+  console.log(pointElement)
   pointElement.textContent = value
 }
+function setDefaultPoints() {
+  pointElement.textContent = 1
+}
 
-let pointElement = document.querySelector('#point-value')
+
+function resetQuestion() {
+  setDefaultPoints()
+}
