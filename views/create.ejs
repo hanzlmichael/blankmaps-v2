@@ -113,12 +113,49 @@
 
             <div class="create-questions-panel">
               <div class="canvas-wrap">
+                <div class="add-button-icon-wrap">
+                  <div class="add-button-wrap">
+                    <input type="checkbox" id="add-button-wrap">
+                    <label for="add-button-wrap" id="add-button-label">  
+                      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="rgb(65,65,65)"/></svg>
+                    </label>  
+                    
+                  </div>
+                 <div class="shape-options-wrap">
+                      <button data-shape="point">Bod</button>
+                      <button data-shape="line">Linie</button>
+                      <button data-shape="polygon">Polygon</button>
+                    </div>
+                    <input type="color" id="select-color">
+                  <svg id="resize-icon" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                 width="1.75rem" height="1.75rem" viewBox="0 0 512.000000 512.000000"
+                 preserveAspectRatio="xMidYMid meet">
+                
+                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                fill="#4299FD" stroke="none" id="resize-icon-bg">
+                <path d="M370 4897 c-49 -16 -133 -102 -148 -153 -18 -60 -18 -4308 0 -4368
+                16 -55 99 -138 154 -154 60 -18 4308 -18 4368 0 55 16 138 99 154 154 18 60
+                18 4308 0 4368 -16 55 -99 138 -154 154 -57 17 -4321 16 -4374 -1z m3901 -626
+                l29 -29 0 -596 c0 -440 -3 -602 -12 -621 -15 -32 -56 -55 -99 -55 -29 0 -56
+                23 -249 215 -118 118 -220 215 -225 215 -6 0 -163 -153 -350 -340 l-340 -340
+                -144 144 -145 145 231 238 c128 131 266 272 308 313 42 41 90 92 107 113 l31
+                39 -222 222 c-219 220 -221 222 -221 265 0 34 6 49 29 72 l29 29 607 0 607 0
+                29 -29z m-2017 -2000 c76 -76 137 -143 135 -149 -2 -6 -148 -159 -324 -339
+                -176 -181 -329 -339 -339 -351 l-20 -23 222 -222 c239 -240 241 -244 210 -312
+                -25 -56 -16 -55 -663 -55 l-597 0 -29 29 -29 29 0 604 c0 556 2 605 18 624 23
+                29 54 44 93 44 30 0 56 -23 254 -220 l220 -220 350 350 c192 193 352 350 355
+                350 3 0 68 -62 144 -139z"/>
+                </g>
+                </svg>
+               
+                  </div>  
                <canvas id="canvas"></canvas> 
+               <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="28" viewBox="0 0 24 24" width="28" class="resize-icon-all"><g><rect fill="none" height="24" width="24"/></g><g><g><g><path d="M15,3l2.3,2.3l-2.89,2.87l1.42,1.42L18.7,6.7L21,9V3H15z M3,9l2.3-2.3l2.87,2.89l1.42-1.42L6.7,5.3L9,3H3V9z M9,21 l-2.3-2.3l2.89-2.87l-1.42-1.42L5.3,17.3L3,15v6H9z M21,15l-2.3,2.3l-2.87-2.89l-1.42,1.42l2.89,2.87L15,21h6V15z"/></g></g></g></svg>
               </div>
               <div class="question-setting-wrap">
                 <h4 class="wrap-heading">mapa</h4>
                 <select name="choose-from-map" id="select-map">
-                  <option value="map1" disabled selected>Vyberte mapu</option>
+                  <option value="" disabled selected>Vyberte mapu</option>
                 </select>
 
                 <div class="line-separator"></div>
@@ -185,7 +222,7 @@
                 
 
                 <div class="line-separator"></div>
-
+                <!-- <button id="testing">test</button> -->
                 <h4 class="wrap-heading">počet bodů (1 - 10)</h4>
                 <div class="points">
                 <svg xmlns="http://www.w3.org/2000/svg" id="dec-point" height="32" viewBox="0 0 24 24" width="32"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 13H5v-2h14v2z"fill="rgb(65,65,65)" id="dec-class" class="disabled"></svg>
@@ -194,22 +231,100 @@
                 </div>
                 <div class="line-separator"></div>
                 <button id="delete-question">smazat otázku</button>
+                <button id="testbtn">testing</button>
               </div>
             </div>
           </div>
         </section>
-        <section class="page page4">4</section>
+        <section class="page page4">
+          <div class="fourth-page-wrap">
+            <div class="finalize-settings-wrap">
+              <div class="total-points-wrap">
+                <span>Celkový počet bodů je: </span>
+                <span id="total-points-value">0</span>
+              </div>
+              <div class="marks-wrap">
+                <h4 class="wrap-heading">nastavení známkování</h4>
+                <table>
+                  <thead>
+                     <tr class="head-row">
+                      <td>známka</td>
+                      <td>body</td>
+                    </tr>
+                  </thead> 
+                  <tr>
+                      <td>
+                        <span class="mark-number">1</span>
+                      </td>
+                    <td>
+                      <input class="table-input-number" type="number" value="1">
+                      <span class="dash">–</span>
+                      <input class="table-input-number" type="number" value="2">
+                     </td>
+                  </tr>
+                  <tr>
+                    <td>
+                        <span class="mark-number">2</span>
+                      </td>
+                    <td>
+                      <input class="table-input-number" type="number" value="3">
+                      <span class="dash">–</span>
+                      <input class="table-input-number" type="number" value="4">
+                     </td>
+                  </tr>
+                  <tr>
+                    <td>
+                        <span class="mark-number">3</span>
+                      </td>
+                    <td>
+                      <input class="table-input-number" type="number" value="5">
+                      <span class="dash">–</span>
+                      <input class="table-input-number" type="number" value="6">
+                     </td>
+                  </tr>
+                  <tr>
+                    <td>
+                        <span class="mark-number">4</span>
+                      </td>
+                    <td>
+                      <input class="table-input-number" type="number" value="7">
+                      <span class="dash">–</span>
+                      <input class="table-input-number" type="number" value="8">
+                     </td>
+                  </tr>
+                  <tr>
+                    <td>
+                        <span class="mark-number">5</span>
+                      </td>
+                    <td>
+                      <input class="table-input-number" type="number" value="9">
+                      <span class="dash">–</span>
+                      <input class="table-input-number" type="number" value="10">
+                     </td>
+                  </tr>
+                </table>    
+              </div>
+            </div>
+          </div>
+        </section>
   </body>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/521/fabric.js"></script>
   <script>
 
     function onlyOne(checkbox) {
+      debugger;
       var checkboxes = document.getElementsByName('check')
+      let closestAnswerWrapElem = checkbox.closest('.answer-wrap')
+      if (closestAnswerWrapElem.classList.contains('answer-wrap-green')) {
+        checkbox.closest('.answer-wrap').classList.remove('answer-wrap-green')
+      } else {
+        checkbox.closest('.answer-wrap').classList.add('answer-wrap-green')
+      }
       checkboxes.forEach((item) => {
           if (item !== checkbox) { 
             item.checked = false
-            console.log(item)
+            item.closest('.answer-wrap').classList.remove('answer-wrap-green')
           }
       })
     }

@@ -5,7 +5,7 @@ export function initAnswer() {
   document.querySelector('.answers-wrap').addEventListener('click', removeAnswerWrap)
 }
 
-function createAnswerWrap() {
+export function createAnswerWrap() {
   let asnwerWrap = document.querySelector('.answers-wrap')
   let parent = asnwerWrap
   let html = `<div class="answer-wrap">
